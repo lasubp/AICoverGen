@@ -1,8 +1,14 @@
-FROM rocm/rocm-terminal:5.6
+FROM rocm/dev-ubuntu-22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=America/Los_Angeles
 
 # install preequirements
-RUN apt-get install -y --no-install-recommends \
-    build-essential python3.9 python3-pip python3-dev ffmpeg sox && \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    build-essential python3.9 python3-pip python3-dev ffmpeg sox tzdata && \
+    ln -fs /usr/share/zoneinfo/$TZ /etc/localtime && \
+    dpkg-reconfigure --frontend noninteractive tzdata && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -23,5 +29,4 @@ RUN python3 /app/src/download_models.py
 
 EXPOSE 7860
 
-# During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
-CMD ["python", "src/webui.py","--listen-host", "0.0.0.0", "--listen-port", "7860", "--listen"]
+CMD ["python3", "src/webui.py","--listen-host", "0.0.0.0", "--listen-port", "7860", "--listen"]
