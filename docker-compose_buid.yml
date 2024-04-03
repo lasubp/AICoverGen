@@ -1,7 +1,9 @@
 ---
 services:
   aicovergen:
-    image: aicovergen-aicovergen
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: aicovergen
     volumes:
       - ./mdxnet_models:/app/mdxnet_models
@@ -15,6 +17,6 @@ services:
       - /dev/kfd
       - /dev/dri
     environment:
-      - HCC_AMDGPU_TARGET=gfx1030
-      - HSA_OVERRIDE_GFX_VERSION=10.3.0
+      - HCC_AMDGPU_TARGET=gfx1030         # (optional for officialy unsupported GPUs)
+      - HSA_OVERRIDE_GFX_VERSION=10.3.0   # set accordicg to your GPU
 
