@@ -64,9 +64,32 @@ class MDX:
 
     def __init__(self, model_path: str, params: MDXModel, processor=DEFAULT_PROCESSOR):
 
-        # Set the device and the provider (CPU or CUDA)
+        # Automaticly selects the execution provider based on GPU availability
+        def auto_provider():
+
+            device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+            if device.type != "cuda":
+                print("No GPU detected. CPUExecutionProvider will be used.")
+                return ['CPUExecutionProvider']
+
+            # Check for presence of vendor-specific tools (adjust commands if necessary)
+            nvidia_smi_available = os.system("command -v nvidia-smi") == 0
+            rocminfo_available = os.system("command -v rocminfo") == 0
+
+            if nvidia_smi_available:
+                print("Nvidia GPU detected. CUDAExecutionProvider will be used.")
+                return ['CUDAExecutionProvider']
+            elif rocminfo_available:
+                print("AMD GPU detected. ROCMExecutionProvider will be used.")
+                return ['ROCMExecutionProvider']
+            else:
+                print("Unknown GPU vendor detected. CPUExecutionProvider will be used.")
+                return ['CPUExecutionProvider']  # Or adjust based on your application's requirements
+
+        # Set the device and the provider (CPU or CUDA or ROCM)
         self.device = torch.device(f'cuda:{processor}') if processor >= 0 else torch.device('cpu')
-        self.provider = ['CUDAExecutionProvider'] if processor >= 0 else ['CPUExecutionProvider']
+        self.provider = auto_provider()
 
         self.model = params
 
