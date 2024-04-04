@@ -1,0 +1,18 @@
+---
+services:
+  aicovergen:
+    image: aicovergen-aicovergen
+    container_name: aicovergen
+    volumes:
+      - ./mdxnet_models:/app/mdxnet_models
+      - ./rvc_models:/app/rvc_models
+      - ./song_output:/app/song_output
+    ports:
+      - "7860:7860"
+    security_opt:
+      - seccomp=unconfined # recommended for performance
+    devices:
+      - /dev/kfd
+      - /dev/dri
+    environment:
+      - TZ=Europe/Kyiv

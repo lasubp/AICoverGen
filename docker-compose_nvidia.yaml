@@ -8,13 +8,13 @@ services:
       - ./rvc_models:/app/rvc_models
       - ./song_output:/app/song_output
     ports:
-      - "7860:7860"
-    security_opt:
-      - seccomp=unconfined # recommended for performance
-    devices:
-      - /dev/kfd
-      - /dev/dri
+      - "8000:8000"
     environment:
-      - HCC_AMDGPU_TARGET=gfx1030
-      - HSA_OVERRIDE_GFX_VERSION=10.3.0
-
+      - TZ=America/Los_Angeles
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
