@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile_amd
-    container_name: aicovergen
+    container_name: aicovergen_amd
     volumes:
       - ./mdxnet_models:/app/mdxnet_models
       - ./rvc_models:/app/rvc_models
@@ -22,4 +22,4 @@ services:
       - HSA_OVERRIDE_GFX_VERSION=10.3.0 # version of CUDA you're trying to run 
                                         # (The 10.3.0 comes from gfx1031, its the nearest supported.)
                                         # (not supported) 10.3.1 -> (supported) 10.3.0.
-
+      - PYTORCH_ROCM_ARCH="gfx1030"     # compile PyTorch only for your microarchitecture (uarch)

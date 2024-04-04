@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile_cpu
-    container_name: aicovergen
+    container_name: aicovergen_cpu
     volumes:
       - ./mdxnet_models:/app/mdxnet_models
       - ./rvc_models:/app/rvc_models

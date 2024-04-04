@@ -1,4 +1,4 @@
-FROM rocm/dev-ubuntu-22.04:5.7.1
+FROM rocm/dev-ubuntu-22.04:6.0.2
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/Kyiv
@@ -6,7 +6,7 @@ ENV TZ=Europe/Kyiv
 # install preequirements
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    build-essential python3.9 python3-pip python3-dev ffmpeg sox tzdata && \
+    build-essential python3.9 python3-pip python3-dev ffmpeg sox tzdata half migraphx && \
     ln -fs /usr/share/zoneinfo/$TZ /etc/localtime && \
     dpkg-reconfigure --frontend noninteractive tzdata && \
     apt-get clean && \
@@ -20,9 +20,9 @@ WORKDIR /app
 COPY . /app
 
 # Install pip requirements
-COPY requirements.txt .
+COPY requirements_amd.txt .
 RUN pip install --no-cache-dir -r requirements_amd.txt
-RUN pip3 install --no-cache-dir tensorboardX
+RUN pip install --no-cache-dir tensorboardX
 
 # Download required models
 RUN python3 /app/src/download_models.py

@@ -20,8 +20,8 @@ WORKDIR /app
 COPY . /app
 
 # Install pip requirements
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements_amd.txt
+COPY requirements_cpu.txt .
+RUN pip install --no-cache-dir -r requirements_cpu.txt
 RUN pip3 install --no-cache-dir tensorboardX
 
 # Download required models

@@ -5,8 +5,8 @@ ffmpeg-python>=0.2.0
 gradio==3.39.0
 lib==4.0.0
 librosa==0.9.1
-numpy==1.23.5
-onnxruntime_gpu
+numpy==1.26.4
+onnxruntime
 praat-parselmouth>=0.4.2
 pedalboard==0.7.7
 pydub==0.25.1
