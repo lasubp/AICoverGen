@@ -2,13 +2,13 @@
 services:
   aicovergen:
     build:
-      context: .
+      context: ../
       dockerfile: Dockerfile_nvidia
     container_name: aicovergen_nvidia
     volumes:
-      - ./mdxnet_models:/app/mdxnet_models
-      - ./rvc_models:/app/rvc_models
-      - ./song_output:/app/song_output
+      - ../mdxnet_models:/app/mdxnet_models
+      - ../rvc_models:/app/rvc_models
+      - ../song_output:/app/song_output
     ports:
       - "7860:7860"
     environment:

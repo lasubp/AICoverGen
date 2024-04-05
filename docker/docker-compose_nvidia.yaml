@@ -4,9 +4,9 @@ services:
     image: aicovergen-aicovergen
     container_name: aicovergen
     volumes:
-      - ./mdxnet_models:/app/mdxnet_models
-      - ./rvc_models:/app/rvc_models
-      - ./song_output:/app/song_output
+      - ../mdxnet_models:/app/mdxnet_models
+      - ../rvc_models:/app/rvc_models
+      - ../song_output:/app/song_output
     ports:
       - "8000:8000"
     environment:
