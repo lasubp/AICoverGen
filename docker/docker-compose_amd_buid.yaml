@@ -4,6 +4,7 @@ services:
     build:
       context: ../
       dockerfile: docker/Dockerfile_amd
+    image: aicovergen_amd
     container_name: aicovergen_amd
     volumes:
       - ../mdxnet_models:/app/mdxnet_models

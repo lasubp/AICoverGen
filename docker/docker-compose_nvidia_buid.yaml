@@ -1,9 +1,10 @@
 ---
 services:
-  aicovergen:
+  aicovergen_nvidia:
     build:
       context: ../
       dockerfile: docker/Dockerfile_nvidia
+    image: aicovergen_nvidia
     container_name: aicovergen_nvidia
     volumes:
       - ../mdxnet_models:/app/mdxnet_models
