@@ -3,7 +3,7 @@ services:
   aicovergen:
     build:
       context: ../
-      dockerfile: Dockerfile_cpu
+      dockerfile: docker/Dockerfile_cpu
     container_name: aicovergen_cpu
     volumes:
       - ../mdxnet_models:/app/mdxnet_models

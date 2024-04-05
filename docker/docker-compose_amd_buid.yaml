@@ -1,9 +1,9 @@
 ---
 services:
-  aicovergen:
+  aicovergen_amd:
     build:
       context: ../
-      dockerfile: Dockerfile_amd
+      dockerfile: docker/Dockerfile_amd
     container_name: aicovergen_amd
     volumes:
       - ../mdxnet_models:/app/mdxnet_models
