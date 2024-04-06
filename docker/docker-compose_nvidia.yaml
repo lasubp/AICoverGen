@@ -1,8 +1,8 @@
 ---
 services:
-  aicovergen:
-    image: aicovergen-aicovergen
-    container_name: aicovergen
+  aicovergen_nvidia:
+    image: aicovergen_nvidia
+    container_name: aicovergen_nvidia
     volumes:
       - ../mdxnet_models:/app/mdxnet_models
       - ../rvc_models:/app/rvc_models

@@ -1,8 +1,8 @@
 ---
 services:
-  aicovergen:
-    image: aicovergen-aicovergen
-    container_name: aicovergen
+  aicovergen_cpu:
+    image: aicovergen_cpu
+    container_name: aicovergen_cpu
     volumes:
       - ../mdxnet_models:/app/mdxnet_models
       - ../rvc_models:/app/rvc_models
