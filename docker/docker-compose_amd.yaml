@@ -22,5 +22,5 @@ services:
                                         # (not supported) 10.3.1 -> (supported) 10.3.0.
       # (optional) Might be requierd if multiple AMD GPUs are present
       # - PYTORCH_ROCM_ARCH="gfx1030"     # compile PyTorch only for your microarchitecture (uarch)
-      # - export ROCR_VISIBLE_DEVICES=0
+      # - ROCR_VISIBLE_DEVICES=0
       - PYTORCH_HIP_ALLOC_CONF=garbage_collection_threshold:0.9,max_split_size_mb:512 # Fix memmory leak (HIP out of memory error)
