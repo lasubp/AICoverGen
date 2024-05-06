@@ -1,3 +1,9 @@
+## Changes from original
+
+Can use with AMD GPU on Linux with ROCm
+
+Added Docker files for different platforms (CPU version curently not works). To use them, at first time run docker compose file with "_build" at the end or run buld sh script and after that run other compose for appopriate platfotm.
+
 # AICoverGen
 An autonomous pipeline to create covers with any RVC v2 trained AI voice from YouTube videos or a local audio file. For developers who may want to add a singing functionality into their AI assistant/chatbot/vtuber, or for people who want to hear their favourite characters sing their favourite song.
 
